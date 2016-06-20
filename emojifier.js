@@ -9,6 +9,11 @@ class Emojifier {
   }
 
   emojifyMorpheme(morpheme) {
+    if (morpheme.wc === '助詞'||
+        morpheme.ctype === 'サ変・スル') {
+      return morpheme.surface;
+    }
+
     return (EMOJI_MAP.get(morpheme.surface) ||
             EMOJI_MAP.get(morpheme.yomi) ||
             EMOJI_MAP.get(morpheme.pronunciation) ||
