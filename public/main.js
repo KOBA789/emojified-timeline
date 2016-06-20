@@ -28,7 +28,8 @@
       E('div', {class: 'right-col'}, [
         E('div', {class: 'screen-name'}, [T('@' + tweet.user.screen_name)]),
         E('p', {class: 'body'}, [T(tweet.emojified_text)]),
-        E('p', {class: 'raw-body'}, [T(tweet.text)])
+        E('p', {class: 'raw-body'}, [T(tweet.text)]),
+        E('a', {class: 'twitter-link', href: 'https://twitter.com/statuses/' + tweet.id_str}, [T('permalink')])
       ])
     ]);
   }

@@ -56,3 +56,8 @@ header > h1 {
 .tweet .raw-body {
     color: #777;
 }
+
+.tweet .twitter-link {
+    color: #777;
+    font-size: 0.8em;
+}
