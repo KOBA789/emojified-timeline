@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html {
+    background-color: #eee;
+}
+
+header {
+    padding: 1em 0 3em 0;
+
+    background-color: #ddd;
+}
+
+header > h1 {
+    width: 960px;
+    margin: 0 auto;
+}
+
+#timeline {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.tweet {
+    margin: 2em 0;
+    border-radius: 3px;
+    border: #ccc 1px solid;
+    padding: 6px;
+    background-color: #dfdfdf;
+}
+
+.tweet:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.tweet > .icon {
+    float: left;
+    width: 48px;
+    height: 48px;
+}
+
+.tweet > .right-col {
+    float: left;
+    margin: 0 6px;
+}
+
+.tweet .screen-name {
+    font-size: 0.8em;
+}
+
+.tweet .raw-body {
+    color: #777;
+}
