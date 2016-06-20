@@ -4,7 +4,7 @@ const libmecab = require('./libmecab');
 
 class Morpheme {
   constructor(node) {
-    this.surface = node.surface;
+    this.surface = new Buffer(node.surface).slice(0, node.length);
     this.features = node.feature.split(',');
     this.stat = node.stat;
     this.cost = node.cost;
@@ -21,19 +21,18 @@ class IPAMorpheme extends Morpheme {
     this.wc3 = this.features[3];
     this.ctype = this.features[4];
     this.cform = this.features[5];
-    this.basic = this.features[6];
+    this.original = this.features[6];
     this.yomi = this.features[7];
     this.pronunciation = this.features[8];
   }
 }
 
 class MeCab {
-  constructor(args = '', morphemeClass = Morpheme) {
+  constructor(args = '') {
     this._model = libmecab.mecab_model_new2(args);
-    this.morphemeClass = morphemeClass;
   }
 
-  parse(input) {
+  parse(input, morphemeClass = Morpheme) {
     const tagger = libmecab.mecab_model_new_tagger(this.model);
     const lattice = libmecab.mecab_model_new_lattice(this.model);
 
@@ -68,7 +67,9 @@ class MeCab {
       while (!node_ptr.isNull()) {
         const node = node_ptr.deref();
 
-        result.push(new this.morphemeClass(node));
+        if (node.stat !== 2 && node.stat !== 3) {
+          result.push(new morphemeClass(node));
+        }
 
         node_ptr = node.next;
       }
@@ -92,7 +93,7 @@ class MeCab {
   }
 }
 
-module.exports = Object.assign({}, MeCab, {
+module.exports = Object.assign(MeCab, {
   Morpheme,
   IPAMorpheme
 });
