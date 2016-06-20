@@ -2,6 +2,8 @@
 
 Twitter の public stream (日本語) のツイートに含まれる語を適当に絵文字に置換します。
 
+実際に動いているサンプル: http://23784.dev.koba789.com/
+
 ## デプロイ
 
 ### 1. `npm install`
